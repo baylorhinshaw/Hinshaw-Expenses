@@ -1,7 +1,9 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose
 
-const expensesSchema = require('./Expenses')
+import bcrypt from 'bcrypt';
+
+import expensesSchema from './Expenses';
 
 const userSchema = new Schema({
   firstName: {
@@ -31,6 +33,7 @@ const userSchema = new Schema({
 },
 });
 
+// need to change some code below 
 // hash user password
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {

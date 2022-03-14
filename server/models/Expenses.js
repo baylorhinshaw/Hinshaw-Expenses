@@ -1,24 +1,20 @@
-const { Schema, model } = require('mongoose');
+import mongoose from 'mongoose';
+const { Schema } = mongoose
 
-const { Schema } = mongoose;
+import fixedExpensesSchema from './FixedExpenses';
+import varibleExpensesSchema from './VariableExpenses';
+import savingsSchema from './Savings';
 
 const expensesSchema = new Schema({
   monthlyIncome: {
     type: Number
   },
-  fixedExpenses: {
-    type: Number
-  },
-  varibleExpenses: {
-    type: Number
-  },
-  savings: {
-    type: Number,
-  },
   leftoverIncome: {
-    type: Number,
+    type: Number
   },
-  // put other schemas
+  fixedExpenses: [fixedExpensesSchema],
+  varibleExpenses: [varibleExpensesSchema],
+  savings: [savingsSchema]
 },
 {
   toJSON: {
