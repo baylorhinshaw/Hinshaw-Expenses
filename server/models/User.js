@@ -3,7 +3,9 @@ const { Schema, model } = mongoose
 
 import bcrypt from 'bcrypt';
 
-import expensesSchema from './Expenses';
+import fixedExpensesSchema from './FixedExpenses';
+import varibleExpensesSchema from './VariableExpenses';
+import savingsSchema from './Savings';
 
 const userSchema = new Schema({
   firstName: {
@@ -24,7 +26,15 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  expenses: [expensesSchema]
+  monthlyIncome: {
+    type: Number
+  },
+  leftoverIncome: {
+    type: Number
+  },
+  fixedExpenses: [fixedExpensesSchema],
+  varibleExpenses: [varibleExpensesSchema],
+  savings: [savingsSchema]
 },
   // need this to use Virtual
 {
@@ -33,7 +43,6 @@ const userSchema = new Schema({
 },
 });
 
-// need to change some code below 
 // hash user password
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
@@ -60,9 +69,9 @@ userSchema.pre('save', async function (next) {
     return bcrypt.compare(password, this.password);
   };
   
-  // when we query a user, we'll also get another field called `animeCount` with the number of saved animes we have
-  userSchema.virtual('animeCount').get(function () {
-    return this.savedAnimes.length;
+  // when we query a user, we'll also get another field called `expenses` with the number of saved expenses we have
+  userSchema.virtual('expenses').get(function () {
+    return this.expenses.length;
   });
   
   const User = model('User', userSchema);
