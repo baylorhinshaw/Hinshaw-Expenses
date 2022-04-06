@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-const { Schema, model } = mongoose
-
 import bcrypt from 'bcrypt';
 
 import fixedExpensesSchema from './FixedExpenses';
 import varibleExpensesSchema from './VariableExpenses';
 import savingsSchema from './Savings';
+
+const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
   firstName: {
@@ -27,9 +27,6 @@ const userSchema = new Schema({
     required: true
   },
   monthlyIncome: {
-    type: Number
-  },
-  leftoverIncome: {
     type: Number
   },
   fixedExpenses: [fixedExpensesSchema],
