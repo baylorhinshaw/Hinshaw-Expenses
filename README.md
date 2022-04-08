@@ -1,4 +1,4 @@
-# social-media-app
+# Hinshaw-Expenses
 
 ## Description 
 

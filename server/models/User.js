@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-import fixedExpensesSchema from './FixedExpenses';
-import varibleExpensesSchema from './VariableExpenses';
-import savingsSchema from './Savings';
+const fixedExpensesSchema = require('./FixedExpenses'); 
+const varibleExpensesSchema = require('./VariableExpenses'); 
+const savingsSchema = require('./Savings'); 
 
 const { Schema, model } = mongoose;
 
