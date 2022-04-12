@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const fixedExpensesSchema = require('./FixedExpenses'); 
-const varibleExpensesSchema = require('./VariableExpenses'); 
-const savingsSchema = require('./Savings'); 
-
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
@@ -29,49 +25,53 @@ const userSchema = new Schema({
   monthlyIncome: {
     type: Number
   },
-  fixedExpenses: [fixedExpensesSchema],
-  varibleExpenses: [varibleExpensesSchema],
-  savings: [savingsSchema]
-},
-  // need this to use Virtual
-{
-  toJSON: {
-    virtuals: true
-},
+  fixedExpense: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'FixedExpenses',
+    },
+  ],
+  variableExpense: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'VariableExpenses',
+    },
+  ],
+  saving: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Savings',
+    },
+  ],
 });
 
 // hash user password
 userSchema.pre('save', async function (next) {
-    if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
-    }
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
   
-    next();
-  });
+  next();
+});
   
-  userSchema.pre('findOneAndUpdate', async function (next) {
-    const update = this.getUpdate('password')
+userSchema.pre('findOneAndUpdate', async function (next) {
+  const update = this.getUpdate('password')
   
-    if (update.password) {
-      const saltRounds = 10;
-      update.password = await bcrypt.hash(update.password, saltRounds);
-    }
+  if (update.password) {
+    const saltRounds = 10;
+    update.password = await bcrypt.hash(update.password, saltRounds);
+  }
   
-    next();
-  });
+  next();
+});
   
-  // custom method to compare and validate password for logging in
-  userSchema.methods.isCorrectPassword = async function (password) {
-    return bcrypt.compare(password, this.password);
-  };
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
   
-  // when we query a user, we'll also get another field called `expenses` with the number of saved expenses we have
-  userSchema.virtual('expenses').get(function () {
-    return this.expenses.length;
-  });
+const User = model('User', userSchema);
   
-  const User = model('User', userSchema);
-  
-  module.exports = User;
+module.exports = User;
   
