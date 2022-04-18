@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/expenses' , {
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/hinshaw-expenses',
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
-});
+  }
+);
 
 module.exports = mongoose.connection;
