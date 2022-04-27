@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const { connect, connection } = require('mongoose');
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/hinshaw-expenses',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+const connectionString =
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/hinshawExpensesDB';
 
-module.exports = mongoose.connection;
+connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
+
+module.exports = connection;
