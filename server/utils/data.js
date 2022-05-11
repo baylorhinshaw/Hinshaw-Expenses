@@ -2,72 +2,53 @@ const seedUsers = [
     {
       username: "Baylor",
       email: "baylor@gmail.com",
-      password: "baylorpassword"
+      password: "baylorpassword",
+      fixedExpense: [{
+        fixedExpenseName: "House Payment",
+        fixedExpenseCost: 1200,
+      }],
+      variableExpense: [{
+        variableExpenseName: "Gucci Bag Payment",
+        variableExpenseCost: 500,
+      }],
+      saving: [{
+        savingName: "Emergency Fund",
+        savingExpenseCost: 200,
+      }]
     },
     {
       username: "Diane",
       email: "diane@gmail.com",
-      password: "dianepassword"
+      password: "dianepassword",
+      fixedExpense: [{
+        fixedExpenseName: "House Payment",
+        fixedExpenseCost: 3000,
+      }],
+      variableExpense: [{
+        variableExpenseName: "Gucci Bag Payment",
+        variableExpenseCost: 5000,
+      }],
+      saving: [{
+        savingName: "Emergency Fund",
+        savingExpenseCost: 1000,
+      }]
     },
     {
       username: "Nolan",
       email: "nolan@gmail.com",
-      password: "nolanpassword"
+      password: "nolanpassword",
+      fixedExpense: [{
+        fixedExpenseName: "House Payment",
+        fixedExpenseCost: 1600,
+      }],
+      variableExpense: [{
+        variableExpenseName: "Gucci Bag Payment",
+        variableExpenseCost: 2000,
+      }],
+      saving: [{
+        savingName: "Emergency Fund",
+        savingExpenseCost: 300,
+      }]
     },
-];
-
-const seedFixedExpenses = [
-    {
-      fixedExpenseName: "Car Payment",
-      fixedExpenseCost: 500,
-      username: "Baylor",
-    },
-    {
-      fixedExpenseName: "House Payment",
-      fixedExpenseCost: 1200,
-      username: "Diane",
-    },
-    {
-      fixedExpenseName: "Gym Membership",
-      fixedExpenseCost: 50,
-      username: "Nolan",
-    },
-];
-
-const seedVariableExpenses = [
-  {
-    variableExpenseName: "McDonalds",
-    variableExpenseCost: 15,
-    username: "Baylor",
-  },
-  {
-    variableExpenseName: "Lululemon",
-    variableExpenseCost: 73,
-    username: "Diane",
-  },
-  {
-    variableExpenseName: "Valorant Skins",
-    variableExpenseCost: 50,
-    username: "Nolan",
-  },
-];
-
-const seedSavings = [
-  {
-    savingName: "Emergency Fund",
-    savingCost: 200,
-    username: "Baylor",
-  },
-  {
-    savingName: "Vacation",
-    savingCost: 150,
-    username: "Diane",
-  },
-  {
-    savingName: "New Computer",
-    savingCost: 50,
-    username: "Nolan",
-  },
-];
-
-module.exports = { seedUsers, seedFixedExpenses, seedVariableExpenses, seedSavings };
+]
+module.exports = { seedUsers };
