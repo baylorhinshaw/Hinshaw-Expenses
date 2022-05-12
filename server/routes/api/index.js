@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const userRoutes = require("./userRoutes");
-const variableExpenseRoutes = require("./variableExpenseRoutes");
-const fixedExpenseRoutes = require("./fixedExpenseRoutes");
-const savingRoutes = require("./savingRoutes");
+const expenseRoutes = require("./expenseRoutes");
 
 router.use("/users", userRoutes);
-router.use("/variableExpenses", variableExpenseRoutes);
-router.use("/fixedExpenses", fixedExpenseRoutes);
-router.use("/savings", savingRoutes);
+router.use("/expenses", expenseRoutes);
 
 module.exports = router;

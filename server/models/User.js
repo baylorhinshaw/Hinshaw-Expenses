@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
@@ -18,24 +19,12 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    fixedExpense:[
+    expenses:[
         {
             type: Schema.Types.ObjectId,
-            ref: 'fixedExpense',
+            ref: 'expense',
         }
-    ],
-    variableExpense: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'variableExpense',
-        }
-    ],
-    saving: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'saving',
-        }
-    ],
+    ]
 });
 
 userSchema.pre('save', async function (next) {

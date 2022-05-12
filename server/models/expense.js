@@ -1,15 +1,24 @@
 const { Schema, model } = require("mongoose");
 
-const fixedExpenseSchema = new Schema({
-  fixedExpenseName: {
+const expenseSchema = new Schema({
+  type: {
+    type: String,
+    required: true,
+    enum: ['fixed','variable','saving']
+  },
+  name: {
     type: String,
     required: true,
     maxlength: 100,
     minlength: 1,
   },
-  fixedExpenseCost: {
+  cost: {
     type: Number,
     required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
   },
   createdAt: {
     type: Date,
@@ -23,6 +32,6 @@ const fixedExpenseSchema = new Schema({
   },
 });
   
-const FixedExpense = model("fixedExpense", fixedExpenseSchema);
+const Expense = model("expense", expenseSchema);
   
-module.exports = FixedExpense;
+module.exports = Expense;
