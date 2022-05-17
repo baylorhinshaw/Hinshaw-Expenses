@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const {protect} = require('../../utils/auth');
 
 const {
   getExpenses,
@@ -9,16 +10,13 @@ const {
 } = require("../../controllers/expenseController.js");
 
 // all Expenses and making one
-router.route("/").get(getExpenses);
+router.route("/").get(protect, getExpenses).post(protect, createExpense);
 
 // getting one Expense, update, or delete
 router
   .route("/:expenseId")
-  .get(getSingleExpense)
-  .put(updateExpense)
-  .delete(removeExpense);
-
-// creating variableExpense 
-router.route("/:userId/expense").post(createExpense);
+  .get(protect, getSingleExpense)
+  .put(protect, updateExpense)
+  .delete(protect, removeExpense);
 
 module.exports = router;
