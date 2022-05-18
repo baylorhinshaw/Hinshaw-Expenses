@@ -12,7 +12,9 @@ const {
 } = require("../../controllers/userController");
 
 // getting all users and then creating one
-router.route("/").get(getUsers).post(createUser);
+router.route("/")
+  .get(getUsers)
+  .post(createUser);
 
 // login user
 router.route("/login").post(loginUser);
@@ -21,6 +23,9 @@ router.route("/login").post(loginUser);
 router.route("/me").get(protect, getMe)
 
 // getting one user, update, deleting
-router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
+router.route("/:userId")
+  .get(protect, getSingleUser)
+  .put(protect, updateUser)
+  .delete(protect, deleteUser);
 
 module.exports = router;

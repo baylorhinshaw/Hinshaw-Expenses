@@ -10,7 +10,9 @@ const {
 } = require("../../controllers/expenseController.js");
 
 // all Expenses and making one
-router.route("/").get(protect, getExpenses).post(protect, createExpense);
+router.route("/")
+  .get(protect, getExpenses)
+  .post(protect, createExpense);
 
 // getting one Expense, update, or delete
 router
