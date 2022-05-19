@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon",
-    "seed": "node utils/seed.js"
+    "watch": "nodemon"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +15,6 @@
     "bcrypt": "^5.0.0",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "express-async-handler": "^1.2.0",
-    "graphql": "^15.5.1",
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9"
   },
   "devDependencies": {
