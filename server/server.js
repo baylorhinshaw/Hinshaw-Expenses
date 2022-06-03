@@ -1,13 +1,15 @@
 const express = require("express");
+const cors = require("cors")
 const db = require("./config/connection");
 const routes = require("./routes");
 require("dotenv").config();
 
-const PORT = process.env.port || 3001;
 const app = express();
+const PORT = process.env.port || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 app.use(routes);
 
 // if we're in production, serve client/build as static assets
