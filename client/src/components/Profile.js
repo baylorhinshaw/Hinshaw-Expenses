@@ -8,9 +8,9 @@ function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    ExpenseApi.getExpenses().then((response) => {
-        console.log(response);
-        setExpenses(response);
+    ExpenseApi.getExpenses().then((data) => {
+        console.log(data);
+        setExpenses(data);
       },
       (error) => {
         console.log(error);
@@ -18,10 +18,27 @@ function Profile() {
     );
   }, []);
 
+  function renderExpenses(){
+    let components = []
+    
+    for(let i = 0; i < expenses.length; i++){
+      let expense = expenses[i]
+      components.push(
+          <div>
+            {expense.name}<br />
+            {expense.type}<br />
+            {expense.cost}<br />
+            {expense.createdAt}<br />
+          </div>
+      )
+    }
+      return components
+  }
+  
   return (
     <div>
       <h1>My expenses</h1>
-      <h3></h3>
+      <div>{renderExpenses()}</div>
     </div>
   )
 }
