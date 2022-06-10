@@ -24,11 +24,41 @@ const expenseSchema = new Schema({
     type: Date,
     default: Date.now,
     get: date => {
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      return `${year}-${month}-${day}`
+      
+      const formatData = (input) => {
+        if (input > 9) {
+          return input;
+        } else return `0${input}`;
+      };
+      
+      const formatHour = (input) => {
+        if (input > 12) {
+          return input - 12;
+        }
+        return input;
+      };
+
+      const format = {
+        mm: formatData(date.getMonth() + 1),
+        dd: formatData(date.getDate()),
+        yyyy: date.getFullYear(),
+        hh: formatData(formatHour(date.getHours())),
+        MM: formatData(date.getMinutes()),
+        SS: formatData(date.getSeconds())
+      }
+
+      const format12Hour = ({ dd, mm, yyyy, hh, MM, SS }) => {
+        return `${mm}/${dd}/${yyyy} ${hh}:${MM}:${SS}`;
+      };
+      
+      return format12Hour(format)
     }
+    // get: date => {
+    //   const year = date.getFullYear();
+    //   const month = date.getMonth() + 1;
+    //   const day = date.getDate();
+    //   return `${year}-${month}-${day}`
+    // }
   },
 });
   

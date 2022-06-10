@@ -18,6 +18,8 @@ export default class UserApi {
     };
 
     static async getCurrentUser() {
-        return JSON.parse(localStorage.getItem("user"));
+        const user = JSON.parse(localStorage.getItem("user"));
+        console.log(user)
+        return user
     };
 }
