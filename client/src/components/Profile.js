@@ -24,11 +24,12 @@ function Profile() {
     for(let i = 0; i < expenses.length; i++){
       let expense = expenses[i]
       components.push(
-          <div>
+          <div className='expense'>
             {expense.name}<br />
             {expense.type}<br />
             {expense.cost}<br />
             {expense.createdAt}<br />
+            <button type='button' className='btn' style={{display: 'revert'}}>Remove</button>
           </div>
       )
     }
@@ -38,7 +39,7 @@ function Profile() {
   return (
     <div>
       <h1>My expenses</h1>
-      <div>{renderExpenses()}</div>
+      <div className='expenses'>{renderExpenses()}</div>
     </div>
   )
 }
