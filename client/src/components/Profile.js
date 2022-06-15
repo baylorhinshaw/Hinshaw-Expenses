@@ -29,7 +29,7 @@ function Profile() {
             {expense.type}<br />
             {expense.cost}<br />
             {expense.createdAt}<br />
-            <button type='button' className='btn' style={{display: 'revert'}}>Remove</button>
+            <button type='button'  onClick={() => { ExpenseApi.removeExpense(expense._id) }} className='btn' style={{display: 'revert'}}>Remove</button>
           </div>
       )
     }
